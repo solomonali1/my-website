@@ -1,0 +1,308 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Trends Picks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        #hero {
+            background: url('https://via.placeholder.com/1200x500?text=Marketing+Banner') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            margin-top: 60px;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        #hero h1, #hero p, #hero a {
+            position: relative;
+            z-index: 1;
+        }
+        #hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        #hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        #hero a {
+            background: #ff6200;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        #hero a:hover {
+            background: #e55a00;
+        }
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        section h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .grid div {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        #contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        #contact input, #contact textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #contact button {
+            background: #ff6200;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #contact button:hover {
+            background: #e55a00;
+        }
+        #contact .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 16px;
+        }
+        #contact .contact-info p {
+            margin: 5px 0;
+        }
+        #contact .contact-info a {
+            color: #ff6200;
+            text-decoration: none;
+        }
+        #contact .contact-info a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo"><img src="https://logoipsum.com/logo/logo-1.svg" alt="Top Trends Picks Logo"></a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div>
+            <h1>Grow Your Business with Us</h1>
+            <p>Innovative marketing solutions to elevate your brand and drive results.</p>
+            <a href="#contact">Get Started</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are a passionate team dedicated to delivering top-notch marketing strategies that help businesses thrive in a competitive world.</p>
+        <div class="grid">
+            <div>
+                <h3>Our Mission</h3>
+                <p>To empower brands with innovative marketing solutions.</p>
+            </div>
+            <div>
+                <h3>Our Vision</h3>
+                <p>To redefine digital success for businesses worldwide.</p>
+            </div>
+            <div>
+                <h3>Our Values</h3>
+                <p>Integrity, creativity, and results-driven excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>Comprehensive marketing solutions tailored to your needs.</p>
+        <div class="grid">
+            <div>
+                <h3>Digital Marketing</h3>
+                <p>Boost your online presence with SEO, PPC, and social media strategies.</p>
+            </div>
+            <div>
+                <h3>Content Creation</h3>
+                <p>Engaging content that resonates with your audience.</p>
+            </div>
+            <div>
+                <h3>Branding</h3>
+                <p>Create a memorable brand identity that stands out.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>What Our Clients Say</h2>
+        <p>Hear from businesses we've helped succeed.</p>
+        <div class="grid">
+            <div>
+                <p>"Their strategies doubled our website traffic in just three months!"</p>
+                <p><strong>Jane Doe, CEO</strong></p>
+            </div>
+            <div>
+                <p>"The team delivered a brand identity that truly reflects our values."</p>
+                <p><strong>John Smith, Founder</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <p>Ready to grow? Let's talk!</p>
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="contact-info">
+            <p>Email: <a href="mailto:solomonhenderson69@gmail.com">solomonhenderson69@gmail.com</a></p>
+            <p>Phone: <a href="tel:+233597301883">+233597301883</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Top Trends Picks. All rights reserved.</p>
+        <div>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+</body>
+</html>
