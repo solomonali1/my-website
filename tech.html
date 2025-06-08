@@ -1,33 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech - TopTrend Picks</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Tech - TopTrend Picks</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="electronics.html">Electronics</a>
-            <a href="fashion.html">Fashion</a>
-            <a href="health.html">Health & Beauty</a>
-            <a href="gaming.html">Gaming</a>
-            <a href="tools.html">Tools</a>
-            <a href="tech.html">Tech</a>
-        </nav>
-    </header>
-    <main>
+<header>
+    <h1>Tech - TopTrend Picks</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="electronics.html">Electronics</a>
+        <a href="fashion.html">Fashion</a>
+        <a href="health.html">Health & Beauty</a>
+        <a href="gaming.html">Gaming</a>
+        <a href="tools.html">Tools</a>
+        <a href="tech.html">Tech</a>
+    </nav>
+</header>
+<main>
+
         <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Product">
-            <h3>Sample Tech Product</h3>
-            <p>This is a sample description for a product in the Tech category.</p>
-            <a href="#" class="button">Buy on Amazon</a>
-            <a href="#" class="button jumia">Buy on Jumia</a>
+            <img src="https://m.media-amazon.com/images/I/61MbLLagiVL._AC_SL1000_.jpg" alt="Echo Dot (5th Gen) Smart Speaker">
+            <h3>Echo Dot (5th Gen) Smart Speaker</h3>
+            <button onclick="openModal('tech0')" class="button">View Details</button>
         </div>
-    </main>
+        
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61omBfmrTBL._AC_SL1500_.jpg" alt="SanDisk 128GB Flash Drive">
+            <h3>SanDisk 128GB Flash Drive</h3>
+            <button onclick="openModal('tech1')" class="button">View Details</button>
+        </div>
+        
+        <div class="modal" id="modaltech0">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('tech0')">&times;</span>
+                <img src="https://m.media-amazon.com/images/I/61MbLLagiVL._AC_SL1000_.jpg" alt="Echo Dot (5th Gen) Smart Speaker">
+                <h2>Echo Dot (5th Gen) Smart Speaker</h2>
+                <p>Alexa-enabled smart speaker with better sound and home control features.</p>
+                <a href="https://www.amazon.com/dp/B09B8V1LZ5?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+                <a href="https://www.jumia.com.gh/catalog/?q=echo+dot" target="_blank" class="button jumia">Buy on Jumia</a>
+            </div>
+        </div>
+        
+        <div class="modal" id="modaltech1">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('tech1')">&times;</span>
+                <img src="https://m.media-amazon.com/images/I/61omBfmrTBL._AC_SL1500_.jpg" alt="SanDisk 128GB Flash Drive">
+                <h2>SanDisk 128GB Flash Drive</h2>
+                <p>High-speed USB 3.0 flash drive. Store and transfer files in seconds.</p>
+                <a href="https://www.amazon.com/dp/B00KYK2V3E?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+                <a href="https://www.jumia.com.gh/catalog/?q=sandisk+usb" target="_blank" class="button jumia">Buy on Jumia</a>
+            </div>
+        </div>
+        
+</main>
+<script>
+function openModal(id) {
+    document.getElementById("modal" + id).style.display = "block";
+}
+function closeModal(id) {
+    document.getElementById("modal" + id).style.display = "none";
+}
+window.onclick = function(event) {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach(modal => {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+}
+</script>
 </body>
 </html>

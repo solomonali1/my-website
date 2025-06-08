@@ -1,33 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming - TopTrend Picks</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Gaming - TopTrend Picks</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="electronics.html">Electronics</a>
-            <a href="fashion.html">Fashion</a>
-            <a href="health.html">Health & Beauty</a>
-            <a href="gaming.html">Gaming</a>
-            <a href="tools.html">Tools</a>
-            <a href="tech.html">Tech</a>
-        </nav>
-    </header>
-    <main>
+<header>
+    <h1>Gaming - TopTrend Picks</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="electronics.html">Electronics</a>
+        <a href="fashion.html">Fashion</a>
+        <a href="health.html">Health & Beauty</a>
+        <a href="gaming.html">Gaming</a>
+        <a href="tools.html">Tools</a>
+        <a href="tech.html">Tech</a>
+    </nav>
+</header>
+<main>
+
         <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Product">
-            <h3>Sample Gaming Product</h3>
-            <p>This is a sample description for a product in the Gaming category.</p>
-            <a href="#" class="button">Buy on Amazon</a>
-            <a href="#" class="button jumia">Buy on Jumia</a>
+            <img src="https://m.media-amazon.com/images/I/61IG46p-yHL._AC_SL1500_.jpg" alt="Sony DualShock 4 Controller">
+            <h3>Sony DualShock 4 Controller</h3>
+            <button onclick="openModal('gaming0')" class="button">View Details</button>
         </div>
-    </main>
+        
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71WcVn92F4L._AC_SL1500_.jpg" alt="Gaming Headset with Mic">
+            <h3>Gaming Headset with Mic</h3>
+            <button onclick="openModal('gaming1')" class="button">View Details</button>
+        </div>
+        
+        <div class="modal" id="modalgaming0">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('gaming0')">&times;</span>
+                <img src="https://m.media-amazon.com/images/I/61IG46p-yHL._AC_SL1500_.jpg" alt="Sony DualShock 4 Controller">
+                <h2>Sony DualShock 4 Controller</h2>
+                <p>Precision control for PS4 with built-in speaker and light bar.</p>
+                <a href="https://www.amazon.com/dp/B01LOP8EZC?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+                <a href="https://www.jumia.com.gh/catalog/?q=ps4+controller" target="_blank" class="button jumia">Buy on Jumia</a>
+            </div>
+        </div>
+        
+        <div class="modal" id="modalgaming1">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('gaming1')">&times;</span>
+                <img src="https://m.media-amazon.com/images/I/71WcVn92F4L._AC_SL1500_.jpg" alt="Gaming Headset with Mic">
+                <h2>Gaming Headset with Mic</h2>
+                <p>Immersive sound, noise-cancelling mic, and RGB lights for gaming.</p>
+                <a href="https://www.amazon.com/dp/B085DKH2GJ?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+                <a href="https://www.jumia.com.gh/catalog/?q=gaming+headset" target="_blank" class="button jumia">Buy on Jumia</a>
+            </div>
+        </div>
+        
+</main>
+<script>
+function openModal(id) {
+    document.getElementById("modal" + id).style.display = "block";
+}
+function closeModal(id) {
+    document.getElementById("modal" + id).style.display = "none";
+}
+window.onclick = function(event) {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach(modal => {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+}
+</script>
 </body>
 </html>

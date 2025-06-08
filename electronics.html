@@ -3,31 +3,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electronics - TopTrend Picks</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Electronics - TopTrend Picks</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="electronics.html">Electronics</a>
-            <a href="fashion.html">Fashion</a>
-            <a href="health.html">Health & Beauty</a>
-            <a href="gaming.html">Gaming</a>
-            <a href="tools.html">Tools</a>
-            <a href="tech.html">Tech</a>
-        </nav>
-    </header>
-    <main>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Product">
-            <h3>Sample Electronics Product</h3>
-            <p>This is a sample description for a product in the Electronics category.</p>
-            <a href="#" class="button">Buy on Amazon</a>
-            <a href="#" class="button jumia">Buy on Jumia</a>
+<header>
+    <h1>Electronics - TopTrend Picks</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="electronics.html">Electronics</a>
+        <a href="fashion.html">Fashion</a>
+        <a href="health.html">Health & Beauty</a>
+        <a href="gaming.html">Gaming</a>
+        <a href="tools.html">Tools</a>
+        <a href="tech.html">Tech</a>
+    </nav>
+</header>
+<main>
+    
+    <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/61d8N7fZzNL._AC_SL1500_.jpg" alt="Logitech Wireless Mouse M185">
+        <h3>Logitech Wireless Mouse M185</h3>
+        <button onclick="openModal(0)" class="button">View Details</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/61cgz5kVwIL._AC_SL1500_.jpg" alt="HP 15.6" Intel Core i3 Laptop">
+        <h3>HP 15.6" Intel Core i3 Laptop</h3>
+        <button onclick="openModal(1)" class="button">View Details</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/71yEX4ugt-L._AC_SL1500_.jpg" alt="Anker PowerCore 10000mAh Power Bank">
+        <h3>Anker PowerCore 10000mAh Power Bank</h3>
+        <button onclick="openModal(2)" class="button">View Details</button>
+    </div>
+    
+    
+    <div class="modal" id="modal0">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal(0)">&times;</span>
+            <img src="https://m.media-amazon.com/images/I/61d8N7fZzNL._AC_SL1500_.jpg" alt="Logitech Wireless Mouse M185">
+            <h2>Logitech Wireless Mouse M185</h2>
+            <p>Compact, reliable 2.4GHz wireless mouse with 12-month battery life. Plug-and-play simplicity.</p>
+            <a href="https://www.amazon.com/dp/B007PJ4PN2?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+            <a href="https://www.jumia.com.gh/catalog/?q=logitech+mouse" target="_blank" class="button jumia">Buy on Jumia</a>
         </div>
-    </main>
+    </div>
+    
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal(1)">&times;</span>
+            <img src="https://m.media-amazon.com/images/I/61cgz5kVwIL._AC_SL1500_.jpg" alt="HP 15.6" Intel Core i3 Laptop">
+            <h2>HP 15.6" Intel Core i3 Laptop</h2>
+            <p>Affordable, powerful laptop perfect for students and professionals. 8GB RAM, 256GB SSD.</p>
+            <a href="https://www.amazon.com/dp/B09K3JPLNN?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+            <a href="https://www.jumia.com.gh/catalog/?q=hp+laptop" target="_blank" class="button jumia">Buy on Jumia</a>
+        </div>
+    </div>
+    
+    <div class="modal" id="modal2">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal(2)">&times;</span>
+            <img src="https://m.media-amazon.com/images/I/71yEX4ugt-L._AC_SL1500_.jpg" alt="Anker PowerCore 10000mAh Power Bank">
+            <h2>Anker PowerCore 10000mAh Power Bank</h2>
+            <p>Compact and fast-charging power bank. Charge your devices anywhere, anytime.</p>
+            <a href="https://www.amazon.com/dp/B0194WDVHI?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+            <a href="https://www.jumia.com.gh/catalog/?q=anker+power+bank" target="_blank" class="button jumia">Buy on Jumia</a>
+        </div>
+    </div>
+    
+</main>
+
+<script>
+function openModal(id) {
+    document.getElementById("modal" + id).style.display = "block";
+}
+function closeModal(id) {
+    document.getElementById("modal" + id).style.display = "none";
+}
+window.onclick = function(event) {
+    for (let i = 0; i < 3; i++) {
+        const modal = document.getElementById("modal" + i);
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+</script>
+
 </body>
 </html>

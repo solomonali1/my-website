@@ -1,33 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - TopTrend Picks</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Tools - TopTrend Picks</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="electronics.html">Electronics</a>
-            <a href="fashion.html">Fashion</a>
-            <a href="health.html">Health & Beauty</a>
-            <a href="gaming.html">Gaming</a>
-            <a href="tools.html">Tools</a>
-            <a href="tech.html">Tech</a>
-        </nav>
-    </header>
-    <main>
+<header>
+    <h1>Tools - TopTrend Picks</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="electronics.html">Electronics</a>
+        <a href="fashion.html">Fashion</a>
+        <a href="health.html">Health & Beauty</a>
+        <a href="gaming.html">Gaming</a>
+        <a href="tools.html">Tools</a>
+        <a href="tech.html">Tech</a>
+    </nav>
+</header>
+<main>
+
         <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Product">
-            <h3>Sample Tools Product</h3>
-            <p>This is a sample description for a product in the Tools category.</p>
-            <a href="#" class="button">Buy on Amazon</a>
-            <a href="#" class="button jumia">Buy on Jumia</a>
+            <img src="https://m.media-amazon.com/images/I/71qSbZMuWgL._AC_SL1500_.jpg" alt="DEWALT Cordless Drill Set">
+            <h3>DEWALT Cordless Drill Set</h3>
+            <button onclick="openModal('tools0')" class="button">View Details</button>
         </div>
-    </main>
+        
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61y+10RksXL._AC_SL1500_.jpg" alt="Digital Laser Tape Measure">
+            <h3>Digital Laser Tape Measure</h3>
+            <button onclick="openModal('tools1')" class="button">View Details</button>
+        </div>
+        
+        <div class="modal" id="modaltools0">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('tools0')">&times;</span>
+                <img src="https://m.media-amazon.com/images/I/71qSbZMuWgL._AC_SL1500_.jpg" alt="DEWALT Cordless Drill Set">
+                <h2>DEWALT Cordless Drill Set</h2>
+                <p>Powerful drill/driver kit with battery and charger. Perfect for DIY.</p>
+                <a href="https://www.amazon.com/dp/B00ET5VMTU?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+                <a href="https://www.jumia.com.gh/catalog/?q=cordless+drill" target="_blank" class="button jumia">Buy on Jumia</a>
+            </div>
+        </div>
+        
+        <div class="modal" id="modaltools1">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('tools1')">&times;</span>
+                <img src="https://m.media-amazon.com/images/I/61y+10RksXL._AC_SL1500_.jpg" alt="Digital Laser Tape Measure">
+                <h2>Digital Laser Tape Measure</h2>
+                <p>High-precision laser measuring tool. Accurate and easy to use.</p>
+                <a href="https://www.amazon.com/dp/B0836CL9RD?tag=your-amazon-tag" target="_blank" class="button">Buy on Amazon</a>
+                <a href="https://www.jumia.com.gh/catalog/?q=laser+measure" target="_blank" class="button jumia">Buy on Jumia</a>
+            </div>
+        </div>
+        
+</main>
+<script>
+function openModal(id) {
+    document.getElementById("modal" + id).style.display = "block";
+}
+function closeModal(id) {
+    document.getElementById("modal" + id).style.display = "none";
+}
+window.onclick = function(event) {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach(modal => {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+}
+</script>
 </body>
 </html>
